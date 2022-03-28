@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS course_students;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS address;
+DROP TABLE IF EXISTS course;
+DROP TABLE IF EXISTS school;
+
+CREATE TABLE IF NOT EXISTS address(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  city_name VARCHAR(100) NOT NULL);
+
+  
+CREATE TABLE IF NOT EXISTS student(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  address_id INTEGER,
+  student_name VARCHAR(100) NOT NULL);
+  
+CREATE TABLE IF NOT EXISTS course(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  school_id INTEGER,
+  course_name VARCHAR(100) NOT NULL);
+  
+CREATE TABLE IF NOT EXISTS course_students(
+   course_student_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+   course_id INTEGER,
+   student_id INTEGER); 
+  
+CREATE TABLE IF NOT EXISTS school(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  school_name VARCHAR(100) NOT NULL);
+  
+  
+ALTER TABLE student ADD FOREIGN KEY (address_id) REFERENCES address(id);
+ALTER TABLE course_students ADD FOREIGN KEY (course_id) REFERENCES course(id);
+ALTER TABLE course_students ADD FOREIGN KEY (student_id) REFERENCES student(id);
+ALTER TABLE course ADD FOREIGN KEY (school_id) REFERENCES school(id);
