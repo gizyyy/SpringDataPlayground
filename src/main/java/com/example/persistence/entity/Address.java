@@ -8,16 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.example.config.PrivateView;
+import com.example.persistence.entity.converter.CourseEnum;
 import com.example.persistence.entity.converter.NameConverter;
 import com.example.persistence.entity.converter.ObjectName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Table(name = "ADDRESS")
 @AllArgsConstructor
 @Getter

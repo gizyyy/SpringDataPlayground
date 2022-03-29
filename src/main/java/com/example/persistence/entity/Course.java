@@ -22,11 +22,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Data
 @Setter
 @Getter
@@ -44,13 +46,9 @@ public class Course {
 	@Enumerated(EnumType.STRING)
 	private CourseEnum courseName;
 
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "school_id")
 	@JsonIgnoreProperties(value = { "courses" })
 	private School school;
 
-	@ManyToMany
-	@JoinTable(name = "course_students", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
-	@JsonIgnoreProperties(value = { "courses" })
-	private List<Student> students;
 }
